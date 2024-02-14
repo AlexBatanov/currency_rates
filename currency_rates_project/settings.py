@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_celery_beat',
+    'django_crontab',
     'rest_framework',
 
     'api',
@@ -86,29 +86,6 @@ DATABASES = {
     }
 }
 
-
-# django setting.
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://localhost:6379',
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
-    }
-}
-
-CELERY_BEAT_SCHEDULE = {
-       'my-task': {
-           'task': 'api.tasks.my_task',
-           'schedule': 10.0,  # Пример расписания (каждые 10 секунд)
-       },
-   }
-
-CELERY_CACHE_BACKEND = 'default'
-CELERY_BROKER_URL = 'redis://localhost:6379/1'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -149,3 +126,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CRONJOBS = [
+       ('*/1 * * * *', 'api.cron.my_cron_job'),
+   ]
+   
