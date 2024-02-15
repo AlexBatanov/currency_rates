@@ -2,7 +2,7 @@ FROM python:3.12
 WORKDIR .
 COPY requirements.txt .
 
-RUN apt-get update && apt-get -y install cron nano
+RUN apt-get update && apt-get -y install cron
 
 COPY crontab /etc/cron.d/crontab
 RUN chmod 0644 /etc/cron.d/crontab
