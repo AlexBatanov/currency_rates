@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404
 from .models import CurrencyRate
 from .serializers import CurrencyCreateSerializer, CurrencySerializer
 
+
 class CurrencyRateViewSet(RetrieveModelMixin, viewsets.GenericViewSet):
     queryset = CurrencyRate.objects.all()
     serializer_class = CurrencySerializer
@@ -15,13 +16,15 @@ class CurrencyRateViewSet(RetrieveModelMixin, viewsets.GenericViewSet):
             return CurrencySerializer
         elif self.action in ['create', 'update', 'partial_update']:
             return CurrencyCreateSerializer
-        return CurrencySerializer  # По умолчанию используем CurrencySerializer
+        return CurrencySerializer
  
     def retrieve(self, request): 
         charcode = request.query_params.get('charcode') 
         date = request.query_params.get('date') 
  
-        currency_rate = get_object_or_404(self.get_queryset(), charcode=charcode, date=date) 
+        currency_rate = get_object_or_404(
+            self.get_queryset(), charcode=charcode, date=date
+        )
         serializer = self.get_serializer(currency_rate) 
  
         return Response(serializer.data)

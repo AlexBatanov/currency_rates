@@ -28,15 +28,15 @@ class Command(BaseCommand):
             current_date = datetime.datetime.now().date()
             charcode = value.get('CharCode')
             
-            # currency_rate = CurrencyRate.objects.filter(
-            #     date=current_date, charcode=charcode
-            # ).first()
+            currency_rate = CurrencyRate.objects.filter(
+                date=current_date, charcode=charcode
+            ).first()
 
-            # if currency_rate:
-            #     serializer = CurrencyCreateSerializer(
-            #         instance=currency_rate, data=value
-            #     )
-            # else:
-            serializer = CurrencyCreateSerializer(data=value)
+            if currency_rate:
+                serializer = CurrencyCreateSerializer(
+                    instance=currency_rate, data=value
+                )
+            else:
+                serializer = CurrencyCreateSerializer(data=value)
             if serializer.is_valid():
                 serializer.save()
