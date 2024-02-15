@@ -1,6 +1,9 @@
 #  Ⓚ
 
 ### Это тестовое задание, которе позволяет отображать курсы валют по отношению к российскому рублю на определенную дату.
+
+![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Docker Badge](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=for-the-badge)
+
 ## Запрос
 
 GET /rate/
@@ -112,3 +115,6 @@ python manage.py runserver
 ### Доступ к Проекту
 
 Проект будет доступен по адресу http://localhost:8000/rate/
+
+### Автор
+[Batanov Alexandr](https://github.com/AlexBatanov)
