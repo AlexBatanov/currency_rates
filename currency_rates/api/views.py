@@ -17,14 +17,14 @@ class CurrencyRateViewSet(RetrieveModelMixin, viewsets.GenericViewSet):
         elif self.action in ['create', 'update', 'partial_update']:
             return CurrencyCreateSerializer
         return CurrencySerializer
- 
-    def retrieve(self, request): 
-        charcode = request.query_params.get('charcode') 
-        date = request.query_params.get('date') 
- 
+
+    def retrieve(self, request):
+        charcode = request.query_params.get('charcode')
+        date = request.query_params.get('date')
+
         currency_rate = get_object_or_404(
             self.get_queryset(), charcode=charcode, date=date
         )
-        serializer = self.get_serializer(currency_rate) 
- 
+        serializer = self.get_serializer(currency_rate)
+
         return Response(serializer.data)

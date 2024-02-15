@@ -29,7 +29,7 @@ class Command(BaseCommand):
         for value in currencies.values():
             current_date = datetime.datetime.now().date()
             charcode = value.get('CharCode')
-            
+
             currency_rate = CurrencyRate.objects.filter(
                 date=current_date, charcode=charcode
             ).first()
