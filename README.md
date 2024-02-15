@@ -27,6 +27,12 @@ json
   "rate": 57.0627
 }
 ```
+Если нет данных - статус код 404:
+```
+{
+    "detail": "Страница не найдена."
+}
+```
 
 ### Запуск проекта в Docker
 
@@ -45,8 +51,12 @@ sudo docker-compose up --build
 ```
 sudo docker-compose exec -it backend python manage.py createsuperuser
 ```
+4. Для первоначальной загрузки валют:
+```
+sudo docker-compose exec -it backend python manage.py update_currency_rates
+```
 
-4. Для загрузки и автоматического обновления курсов валют запустите cron:
+5. Для загрузки и автоматического обновления курсов валют запустите cron:
 ```
 sudo docker-compose exec -it backend service cron start
 ```
@@ -55,28 +65,32 @@ sudo docker-compose exec -it backend service cron start
 Информация для установки временого интервала https://help.ubuntu.com/community/CronHowto#Crontab_Lines
 
 ### Локальный Запуск
+1. Перейти в дирректорию проекта:
+```
+cd currency_rates
+```
 
-1. Установите зависимости:
+2. Установите зависимости:
 ```
 pip install -r requirements.txt
 ```
 
-2. Примените миграции:
+3. Примените миграции:
 ```
 python manage.py migrate
 ```
 
-3. Создайте суперпользователя:
+4. Создайте суперпользователя:
 ```
 python manage.py createsuperuser
 ```
 
-4. Загрузите и обновите курсы валют:
+5. Загрузите и обновите курсы валют:
 ```
 python manage.py update_currency_rates
 ```
 
-5. Для постоянного обновления курсов валют потребуется запустить cron:
+6. Для постоянного обновления курсов валют потребуется запустить cron:
     - Получение команды для crontab:
     ```
     bash create_crontab_command.sh
@@ -89,7 +103,11 @@ python manage.py update_currency_rates
     - В открывшемся редакторе указываем интервал выполнения и вставляем скопированную команду. Информация для установки временого интервала https://help.ubuntu.com/community/CronHowto#Crontab_Lines
     - Сохраняем изменения и выйходим из редактора.
     - Теперь курс валют будет автоматически обновляться согласно настройкам.
-
+7. Запуск проекта:
+```
+python manage.py runserver
+```
+Для остановки задачи cron - выполнить crontab -e, удалить команду и сохранить
 
 ### Доступ к Проекту
 

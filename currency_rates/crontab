@@ -1,1 +1,1 @@
-*/1 * * * * export DJANGO_SETTINGS_MODULE='currency_rates_project.settings'; /usr/local/bin/python3 /manage.py update_currency_rates >> /var/log/cron.log 2>&1 # django-cronjobs
+0 0 * * * export DJANGO_SETTINGS_MODULE='currency_rates_project.settings'; /usr/local/bin/python /manage.py update_currency_rates >> /var/log/cron.log 2>&1 # django-cronjobs
